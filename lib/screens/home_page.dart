@@ -1,40 +1,70 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_demo/providers/cars_provider.dart';
+import 'package:flutter_demo/screens/add_car_page.dart';
+import 'package:provider/provider.dart';
 
-import 'add_car_page.dart';
-
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
+class HomePage extends StatefulWidget {
+  static bool hasData = false;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
+  TabController tabController;
 
-  String _brand;
-  String _type;
-
-
-  // 表单的GlobalKey
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  @override
+  void initState() {
+    super.initState();
+    tabController = TabController(length: 3, vsync: this);
+  }
 
   @override
   Widget build(BuildContext context) {
+
+    Provider.of<CarsProvider>(context).getCarList();
+
+    if (Provider.of<CarsProvider>(context).count > 0) {
+      HomePage.hasData = true;
+    }
+
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text('Cars'),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.add),
+            onPressed: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => AddCarPage()));
+            },
+          ),
+        ],
+        bottom: TabBar(
+          controller: tabController,
+          tabs: <Widget>[
+            Tab(text: 'All'),
+            Tab(text: 'UnReady'),
+            Tab(text: 'Ready'),
+          ],
+        ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async{
-          Navigator.push(context, MaterialPageRoute(
-              builder: (context) => AddCarPage()
-          ));
-        },
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      body: Provider.of<CarsProvider>(context).count > 0
+          ? TabBarView(
+        controller: tabController,
+        children: <Widget>[
+          AllTasksTab(),
+          IncompleteTasksTab(),
+          CompletedTasksTab()
+        ],
+      )
+          : Center(
+        child: Text(
+          '',
+          style: TextStyle(fontSize: 20.0),
+        ),
+      ),
     );
   }
 }

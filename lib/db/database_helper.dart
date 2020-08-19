@@ -45,7 +45,7 @@ class DatabaseHelper {
   }
 
   //  读取数据
-  Future<List<Map<String, dynamic>>> getTodoMapList() async {
+  Future<List<Map<String, dynamic>>> getCarMapList() async {
     Database db = await this.database;
     var result = await db.query(carsTable);
     return result;
@@ -84,14 +84,14 @@ class DatabaseHelper {
   }
 
   // 转化获得 List 类型数据
-  Future<List<Car>> getTaskList() async {
-    var todoMapList = await getTodoMapList();
-    int count = todoMapList.length;
+  Future<List<Car>> getCarList() async {
+    var carMapList = await getCarMapList();
+    int count = carMapList.length;
 
     List<Car> carList = List<Car>();
 
     for (int i = 0; i < count; i++) {
-      carList.add(Car.fromMapObject(todoMapList[i]));
+      carList.add(Car.fromMapObject(carMapList[i]));
     }
     return carList;
   }
