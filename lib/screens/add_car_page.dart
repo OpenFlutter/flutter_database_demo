@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'model/car.dart';
+import '../model/car.dart';
 
 class AddCarPage extends StatefulWidget {
 
