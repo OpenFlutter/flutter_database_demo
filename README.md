@@ -7,7 +7,7 @@
 
 ## GIF展示图
 <p align="center">
-<img src=https://github.com/tongyangsheng/flutter_im_demo/blob/master/showImage/gifshow.gif alt="drawing" width="300">
+<img src=https://github.com/tongyangsheng/flutter_database_demo/blob/master/showGif.gif alt="drawing" width="300">
 </p>
 
 ## 说明
