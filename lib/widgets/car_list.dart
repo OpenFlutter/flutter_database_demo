@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
-import '../models/task.dart';
-import 'task_list_item.dart';
+import 'package:flutter_demo/model/car.dart';
+import 'package:flutter_demo/widgets/car_list_item.dart';
 
-class TaskList extends StatelessWidget {
-  final List<Task> tasks;
+class CarList extends StatelessWidget {
+  final List<Car> cars;
 
-  TaskList({@required this.tasks});
+  CarList({@required this.cars});
 
   @override
   Widget build(BuildContext context) {
     return ListView(
-      children: getChildrenTasks(),
+      children: getChildrenCars(),
     );
   }
 
-  List<TaskListItem> getChildrenTasks() {
-    return tasks
-        .map((task) => TaskListItem(
-      task: task,
+  List<CarListItem> getChildrenCars() {
+    return cars
+        .map((car) => CarListItem(
+      car: car,
     ))
         .toList();
   }

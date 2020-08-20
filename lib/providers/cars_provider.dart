@@ -53,7 +53,7 @@ class CarsProvider with ChangeNotifier {
     int result = await _databaseHelper.updateCar(car);
 
     if (result != 0 && car.start == true) {
-      _showSnackBar(context, '${car.brand} + ${car.type} + Completed');
+      _showSnackBar(context, '${car.brand}' +'  '+'${car.type}' + '      ' +'Start');
     }
     notifyListeners();
   }
@@ -75,6 +75,7 @@ class CarsProvider with ChangeNotifier {
 
   void _showSnackBar(BuildContext context, String message) {
     final snackBar = SnackBar(
+      duration: Duration(milliseconds: 500),
       content: Text(
         message,
         style: TextStyle(color: Colors.white),

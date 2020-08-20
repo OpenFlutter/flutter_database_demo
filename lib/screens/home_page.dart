@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_demo/providers/cars_provider.dart';
 import 'package:flutter_demo/screens/add_car_page.dart';
+import 'package:flutter_demo/tabs/all_cars.dart';
+import 'package:flutter_demo/tabs/ready_cars.dart';
+import 'package:flutter_demo/tabs/unready_cars.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -31,7 +34,7 @@ class _HomePageState extends State<HomePage>
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Cars'),
+        title: Text('Your Cars'),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.add),
@@ -54,9 +57,9 @@ class _HomePageState extends State<HomePage>
           ? TabBarView(
         controller: tabController,
         children: <Widget>[
-          AllTasksTab(),
-          IncompleteTasksTab(),
-          CompletedTasksTab()
+          AllCarsTab(),
+          UnReadyCarsTab(),
+          ReadyCarsTab()
         ],
       )
           : Center(

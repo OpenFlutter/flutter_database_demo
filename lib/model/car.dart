@@ -12,7 +12,6 @@ class Car {
 //    return !completed;
 //  }
 
-  // Convert a Task into a MAP Object
   Map<String, dynamic> toMap() {
     var map = Map<String, dynamic>();
     if (id != null) {

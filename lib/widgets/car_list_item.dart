@@ -18,7 +18,7 @@ class CarListItem extends StatelessWidget {
               .startCar(context, car);
         },
       ),
-      title: Text(car.brand),
+      title: Text(car.brand + "  " + car.type),
       trailing: IconButton(
         onPressed: () {
           Provider.of<CarsProvider>(context, listen: false)
